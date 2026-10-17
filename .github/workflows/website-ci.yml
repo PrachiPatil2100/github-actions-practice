@@ -22,5 +22,6 @@ jobs:
           script: |
             git clone https://github.com/PrachiPatil2100/github-actions-practice.git
             cd github-actions-practice
+            sudo su
             rm -rf /var/www/html/*
             cp index.html /var/www/html/
