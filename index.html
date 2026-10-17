@@ -4,203 +4,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DISCIPLINE | Build Yourself</title>
+  <meta name="theme-color" content="#f6f6f1">
+  <title>Steady | Your daily practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f6f1;
+      --white: #fff;
+      --ink: #1e3027;
+      --muted: #738077;
+      --line: #e7e9e1;
+      --green: #41664d;
+      --green-dark: #294b37;
+      --lime: #d8ef88;
+      --coral: #df7459;
+      --radius: 10px;
+    }
+
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101411;
-      color: #f5f3e9;
-      line-height: 1.6;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header, main, footer {
-      width: min(900px, 90%);
-      margin: auto;
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .topbar {
+      height: 76px;
+      padding: 0 max(6.2vw, calc((100vw - 1180px) / 2));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
     }
 
-    header {
-      padding: 28px 0;
-      border-bottom: 1px solid #343b34;
-      letter-spacing: 3px;
-      font-weight: bold;
+    .brand {
+      color: var(--green-dark);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
-    .hero { padding: 65px 0 35px; }
+    .brand-mark { color: var(--coral); }
 
-    .tag {
-      color: #b9d99a;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+    .today-label {
+      color: var(--muted);
       font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
+
+    main { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
+
+    .welcome {
+      padding: 54px 0 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 13px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, p { margin-top: 0; }
 
     h1 {
-      font-size: clamp(40px, 8vw, 76px);
-      line-height: 1.05;
-      margin: 18px 0;
+      margin-bottom: 10px;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.1;
+      font-weight: 600;
     }
 
-    h1 span { color: #b9d99a; }
+    h1 em { color: var(--green); font-style: normal; }
 
-    .intro { color: #bdc4ba; max-width: 560px; }
+    .welcome-copy { max-width: 475px; margin-bottom: 0; color: var(--muted); font-size: 15px; }
 
-    .panel {
-      background: #1b221c;
-      border: 1px solid #343b34;
-      border-radius: 16px;
-      padding: 24px;
-      margin: 24px 0;
+    .streak-pill {
+      min-width: 170px;
+      padding: 14px 17px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
     }
+
+    .streak-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff0e9;
+      color: var(--coral);
+      font-size: 20px;
+    }
+
+    .streak-count { display: block; font-family: Manrope, sans-serif; font-size: 19px; font-weight: 800; line-height: 1.1; }
+    .streak-caption { color: var(--muted); font-size: 11px; }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.85fr);
+      gap: 22px;
+      align-items: start;
+      padding-bottom: 60px;
+    }
+
+    .surface {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .surface-heading {
+      padding: 23px 25px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    h2 { margin-bottom: 3px; font-family: Manrope, sans-serif; font-size: 18px; font-weight: 700; }
+    .subheading { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .count-chip {
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #f1f4ec;
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .progress-area { padding: 0 25px 18px; }
+
+    .progress-label { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
 
     .progress-track {
-      height: 8px;
-      background: #343b34;
-      border-radius: 10px;
+      height: 6px;
+      margin-top: 8px;
       overflow: hidden;
-      margin: 14px 0;
+      border-radius: 9px;
+      background: #edf0e9;
     }
 
     #progress-bar {
-      width: 0%;
+      width: 0;
       height: 100%;
-      background: #b9d99a;
-      transition: width 0.2s;
+      border-radius: inherit;
+      background: var(--green);
+      transition: width 220ms ease;
     }
 
-    .habit {
+    .habit-list { padding: 0 25px; }
+
+    .habit-row {
+      min-height: 60px;
+      padding: 12px 0;
       display: flex;
-      gap: 12px;
       align-items: center;
-      padding: 13px 0;
-      border-bottom: 1px solid #343b34;
+      gap: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .habit-check {
+      appearance: none;
+      flex: 0 0 21px;
+      width: 21px;
+      height: 21px;
+      margin: 0;
+      border: 1.5px solid #cbd2c8;
+      border-radius: 6px;
+      background: var(--white);
       cursor: pointer;
+      transition: background 150ms ease, border-color 150ms ease;
     }
 
-    .habit:last-child { border-bottom: 0; }
+    .habit-check:checked { border-color: var(--green); background: var(--green); }
+    .habit-check:checked::after { content: "✓"; display: block; color: #fff; text-align: center; font-size: 14px; line-height: 19px; }
+    .habit-check:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #bad179; outline-offset: 3px; }
 
-    input[type="checkbox"] {
-      accent-color: #b9d99a;
-      width: 18px;
-      height: 18px;
-    }
+    .habit-name { flex: 1; font-size: 13px; font-weight: 500; }
+    .habit-row.is-done .habit-name { color: #929b92; text-decoration: line-through; }
 
-    button {
-      background: #b9d99a;
-      color: #101411;
+    .remove-habit {
+      width: 30px;
+      height: 30px;
       border: 0;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+      border-radius: 50%;
+      background: transparent;
+      color: #929b92;
+      font-size: 19px;
+      line-height: 1;
+      opacity: 0;
+      transition: color 150ms ease, background 150ms ease, opacity 150ms ease;
     }
 
-    #quote { color: #b9d99a; font-size: 19px; }
+    .habit-row:hover .remove-habit, .remove-habit:focus-visible { opacity: 1; }
+    .remove-habit:hover { background: #fff0e9; color: var(--coral); }
 
-    footer {
-      border-top: 1px solid #343b34;
-      padding: 24px 0;
-      color: #9ba398;
-      font-size: 13px;
+    .add-form {
+      margin: 12px 25px 20px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .add-form input {
+      min-width: 0;
+      flex: 1;
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fcfcfa;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .add-form input::placeholder { color: #9aa39a; }
+
+    .add-button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 7px;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 22px;
+      line-height: 1;
+      transition: background 150ms ease;
+    }
+
+    .add-button:hover { background: var(--green); }
+
+    .done-message {
+      display: none;
+      margin: 0 25px 20px;
+      padding: 11px 13px;
+      border-radius: 7px;
+      background: #f1f5e6;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .done-message.visible { display: block; }
+
+    .side-stack { display: grid; gap: 20px; }
+
+    .week-surface { padding-bottom: 20px; }
+    .week-surface .surface-heading { padding-bottom: 21px; }
+
+    .week-chart {
+      height: 112px;
+      margin: 0 21px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: end;
+      gap: 10px;
+    }
+
+    .week-day { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: end; gap: 8px; }
+    .day-track { width: min(24px, 100%); height: 82px; display: flex; align-items: end; overflow: hidden; border-radius: 5px; background: #f0f2ed; }
+    .day-fill { width: 100%; min-height: 0; border-radius: 5px; background: #9ab16d; transition: height 220ms ease; }
+    .week-day.today .day-fill { background: var(--green-dark); }
+    .day-label { color: var(--muted); font-size: 10px; }
+    .week-day.today .day-label { color: var(--green-dark); font-weight: 700; }
+
+    .week-summary {
+      margin: 20px 21px 0;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .week-summary strong { color: var(--ink); font-size: 12px; }
+
+    .note-surface {
+      padding: 21px 22px 20px;
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+      color: white;
+    }
+
+    .note-surface .eyebrow { margin-bottom: 12px; color: var(--lime); }
+    .note-surface blockquote { margin: 0; font-family: Manrope, sans-serif; font-size: 18px; font-weight: 500; line-height: 1.5; }
+    .note-bottom { margin-top: 17px; display: flex; align-items: center; justify-content: space-between; }
+    .note-credit { color: #c5d2c4; font-size: 10px; }
+
+    .quote-button {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #647b69;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+      transition: background 150ms ease;
+    }
+
+    .quote-button:hover { background: #42604a; }
+
+    .footer {
+      padding: 18px 0 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @media (max-width: 720px) {
+      .topbar { height: 66px; padding: 0 22px; }
+      main { width: min(100% - 36px, 520px); }
+      .welcome { padding: 38px 0 25px; align-items: start; flex-direction: column; gap: 20px; }
+      h1 { font-size: clamp(34px, 9vw, 46px); }
+      .streak-pill { min-width: 0; }
+      .dashboard { grid-template-columns: 1fr; gap: 16px; padding-bottom: 35px; }
+      .side-stack { grid-template-columns: 1fr; gap: 16px; }
+      .remove-habit { opacity: 1; }
+      .footer { flex-direction: column; gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
-  <header>DISCIPLINE<span style="color:#b9d99a">.</span></header>
+  <header class="topbar">
+    <div class="brand">steady<span class="brand-mark">.</span></div>
+    <div class="today-label" id="today-label"></div>
+  </header>
 
   <main>
-    <section class="hero">
-      <div class="tag">Small actions. Strong identity.</div>
-      <h1>Become who<br>you <span>promised.</span></h1>
-      <p class="intro">
-        Motivation comes and goes. Discipline is the decision to
-        keep showing up, especially when you don't feel like it.
-      </p>
-    </section>
-
-    <section class="panel">
-      <h2>Today's commitments</h2>
-      <p id="progress-text">0 of 4 habits completed</p>
-      <div class="progress-track">
-        <div id="progress-bar"></div>
+    <section class="welcome" aria-labelledby="welcome-title">
+      <div>
+        <p class="eyebrow">A little progress, every day</p>
+        <h1 id="welcome-title">Show up for <em>yourself.</em></h1>
+        <p class="welcome-copy">You don't need a perfect day. Just keep a few small promises, and let them add up.</p>
       </div>
-
-      <label class="habit">
-        <input type="checkbox">
-        <span>Wake up on time</span>
-      </label>
-      <label class="habit">
-        <input type="checkbox">
-        <span>Learn something for my career</span>
-      </label>
-      <label class="habit">
-        <input type="checkbox">
-        <span>Move my body for 30 minutes</span>
-      </label>
-      <label class="habit">
-        <input type="checkbox">
-        <span>Read and reflect for 10 minutes</span>
-      </label>
-
-      <p id="completion-message">Start with one small win.</p>
-      <button id="reset-button">Reset today's checklist</button>
+      <div class="streak-pill" aria-label="Current streak">
+        <span class="streak-icon" aria-hidden="true">✳</span>
+        <span><strong class="streak-count" id="streak-count">0 days</strong><span class="streak-caption">your current streak</span></span>
+      </div>
     </section>
 
-    <section class="panel">
-      <div class="tag">Remember this</div>
-      <p id="quote">You don't need to feel ready. You need to begin.</p>
-      <button id="quote-button">New reminder</button>
+    <section class="dashboard" aria-label="Habit dashboard">
+      <section class="surface habits-surface" aria-labelledby="habits-title">
+        <div class="surface-heading">
+          <div>
+            <h2 id="habits-title">Today's practice</h2>
+            <p class="subheading">One step at a time.</p>
+          </div>
+          <span class="count-chip" id="count-chip">0 / 0 done</span>
+        </div>
+        <div class="progress-area">
+          <div class="progress-label"><span>Your daily progress</span><span id="progress-percent">0%</span></div>
+          <div class="progress-track" role="progressbar" aria-label="Today's habit progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progress-bar"></div>
+          </div>
+        </div>
+        <div class="habit-list" id="habit-list"></div>
+        <form class="add-form" id="add-form">
+          <input id="habit-input" type="text" maxlength="50" placeholder="Add a small promise..." aria-label="New habit" required>
+          <button class="add-button" type="submit" aria-label="Add habit" title="Add habit">+</button>
+        </form>
+        <p class="done-message" id="done-message" role="status">A good day, built one promise at a time.</p>
+      </section>
+
+      <aside class="side-stack">
+        <section class="surface week-surface" aria-labelledby="week-title">
+          <div class="surface-heading">
+            <div>
+              <h2 id="week-title">This week</h2>
+              <p class="subheading">Small wins add up.</p>
+            </div>
+          </div>
+          <div class="week-chart" id="week-chart" aria-label="Weekly habit completion"></div>
+          <div class="week-summary"><span>Habits completed this week</span><strong id="week-total">0</strong></div>
+        </section>
+
+        <section class="surface note-surface" aria-label="Daily reminder">
+          <p class="eyebrow">A note to keep</p>
+          <blockquote id="quote">You don't have to see the whole staircase. Just take the first step.</blockquote>
+          <div class="note-bottom">
+            <span class="note-credit">A little reminder for today</span>
+            <button class="quote-button" id="quote-button" type="button" aria-label="Show another reminder" title="New reminder">↻</button>
+          </div>
+        </section>
+      </aside>
     </section>
+
+    <footer class="footer"><span>steady. &nbsp;Make room for the life you're building.</span><span>Your progress is saved on this device.</span></footer>
   </main>
 
-  <footer>DISCIPLINE. &mdash; Build habits. Keep promises to yourself.</footer>
-
   <script>
-    const checkboxes = document.querySelectorAll(
-      '.habit input[type="checkbox"]'
-    );
-    const progressText = document.getElementById('progress-text');
-    const progressBar = document.getElementById('progress-bar');
-    const message = document.getElementById('completion-message');
+    const storageKey = 'steady-habits-v1';
+    const starterHabits = [
+      { id: 'water', name: 'Drink a glass of water first thing' },
+      { id: 'learn', name: 'Spend 20 minutes learning' },
+      { id: 'move', name: 'Move your body for 30 minutes' },
+      { id: 'read', name: 'Read a few pages before bed' }
+    ];
+    const reminders = [
+      'You don\'t have to see the whole staircase. Just take the first step.',
+      'Consistency is built in the ordinary moments.',
+      'Keep one small promise to yourself today.',
+      'Progress counts, even when it feels quiet.',
+      'A fresh start can be as small as your next choice.'
+    ];
+    const weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const today = new Date();
 
-    function updateProgress() {
-      const completed = [...checkboxes].filter(box => box.checked).length;
-      const total = checkboxes.length;
-
-      progressText.textContent = `${completed} of ${total} habits completed`;
-      progressBar.style.width = `${(completed / total) * 100}%`;
-
-      message.textContent = completed === total
-        ? 'Excellent! You kept every commitment today.'
-        : completed === 0
-          ? 'Start with one small win.'
-          : 'Keep going. Consistency beats perfection.';
+    function dateKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
     }
 
-    checkboxes.forEach(box => {
-      box.addEventListener('change', updateProgress);
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved && Array.isArray(saved.habits) && saved.days && typeof saved.days === 'object') {
+          return saved;
+        }
+      } catch (error) {
+        console.warn('Saved habit data could not be loaded.', error);
+      }
+      return { habits: starterHabits, days: {} };
+    }
+
+    let state = loadState();
+    const todayKey = dateKey(today);
+    let reminderIndex = 0;
+
+    function saveState() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      } catch (error) {
+        console.warn('Habit progress could not be saved.', error);
+      }
+    }
+
+    function completedCount(key) {
+      const day = state.days[key] || {};
+      return state.habits.filter(habit => day[habit.id]).length;
+    }
+
+    function updateStreak() {
+      let streak = 0;
+      const cursor = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      if (completedCount(todayKey) === 0) cursor.setDate(cursor.getDate() - 1);
+      while (completedCount(dateKey(cursor)) > 0) {
+        streak += 1;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      document.getElementById('streak-count').textContent = `${streak} ${streak === 1 ? 'day' : 'days'}`;
+    }
+
+    function renderHabits() {
+      const list = document.getElementById('habit-list');
+      const todayProgress = state.days[todayKey] || {};
+      list.replaceChildren();
+
+      state.habits.forEach(habit => {
+        const row = document.createElement('div');
+        row.className = `habit-row${todayProgress[habit.id] ? ' is-done' : ''}`;
+
+        const checkbox = document.createElement('input');
+        checkbox.className = 'habit-check';
+        checkbox.type = 'checkbox';
+        checkbox.checked = Boolean(todayProgress[habit.id]);
+        checkbox.setAttribute('aria-label', `Mark ${habit.name} complete`);
+        checkbox.addEventListener('change', () => {
+          state.days[todayKey] = state.days[todayKey] || {};
+          state.days[todayKey][habit.id] = checkbox.checked;
+          saveState();
+          render();
+        });
+
+        const name = document.createElement('span');
+        name.className = 'habit-name';
+        name.textContent = habit.name;
+
+        const remove = document.createElement('button');
+        remove.className = 'remove-habit';
+        remove.type = 'button';
+        remove.textContent = '×';
+        remove.setAttribute('aria-label', `Remove ${habit.name}`);
+        remove.title = 'Remove habit';
+        remove.addEventListener('click', () => {
+          state.habits = state.habits.filter(item => item.id !== habit.id);
+          Object.values(state.days).forEach(day => delete day[habit.id]);
+          saveState();
+          render();
+        });
+
+        row.append(checkbox, name, remove);
+        list.append(row);
+      });
+
+      const completed = completedCount(todayKey);
+      const total = state.habits.length;
+      const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+      document.getElementById('count-chip').textContent = `${completed} / ${total} done`;
+      document.getElementById('progress-percent').textContent = `${percentage}%`;
+      document.getElementById('progress-bar').style.width = `${percentage}%`;
+      document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', percentage);
+      document.getElementById('done-message').classList.toggle('visible', total > 0 && completed === total);
+    }
+
+    function renderWeek() {
+      const chart = document.getElementById('week-chart');
+      const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      start.setDate(start.getDate() - 6);
+      chart.replaceChildren();
+      let totalThisWeek = 0;
+
+      for (let offset = 0; offset < 7; offset += 1) {
+        const date = new Date(start.getFullYear(), start.getMonth(), start.getDate() + offset);
+        const key = dateKey(date);
+        const count = completedCount(key);
+        totalThisWeek += count;
+        const percentage = state.habits.length === 0 ? 0 : Math.round((count / state.habits.length) * 100);
+
+        const day = document.createElement('div');
+        day.className = `week-day${key === todayKey ? ' today' : ''}`;
+        day.setAttribute('aria-label', `${date.toLocaleDateString(undefined, { weekday: 'long' })}: ${count} habits completed`);
+        const track = document.createElement('div');
+        track.className = 'day-track';
+        const fill = document.createElement('div');
+        fill.className = 'day-fill';
+        fill.style.height = `${percentage}%`;
+        track.append(fill);
+        const label = document.createElement('span');
+        label.className = 'day-label';
+        label.textContent = weekdayNames[date.getDay()];
+        day.append(track, label);
+        chart.append(day);
+      }
+
+      document.getElementById('week-total').textContent = totalThisWeek;
+    }
+
+    function render() {
+      renderHabits();
+      renderWeek();
+      updateStreak();
+    }
+
+    document.getElementById('today-label').textContent = today.toLocaleDateString(undefined, {
+      weekday: 'long', month: 'long', day: 'numeric'
     });
 
-    document.getElementById('reset-button').addEventListener('click', () => {
-      checkboxes.forEach(box => box.checked = false);
-      updateProgress();
+    document.getElementById('add-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = document.getElementById('habit-input');
+      const name = input.value.trim();
+      if (!name) return;
+      state.habits.push({ id: `habit-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, name });
+      input.value = '';
+      saveState();
+      render();
+      input.focus();
     });
-
-    const quotes = [
-      "You don't need to feel ready. You need to begin.",
-      "Consistency is more powerful than intensity.",
-      "Keep promises to yourself, especially the small ones.",
-      "Your habits shape the person you become."
-    ];
-
-    let quoteIndex = 0;
 
     document.getElementById('quote-button').addEventListener('click', () => {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById('quote').textContent = quotes[quoteIndex];
+      reminderIndex = (reminderIndex + 1) % reminders.length;
+      document.getElementById('quote').textContent = reminders[reminderIndex];
     });
+
+    render();
   </script>
 </body>
 </html>
