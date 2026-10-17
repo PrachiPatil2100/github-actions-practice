@@ -12,15 +12,16 @@
   <style>
     :root {
       color-scheme: light;
-      --paper: #f6f6f1;
+      --paper: #f7f6ef;
       --white: #fff;
       --ink: #1e3027;
       --muted: #738077;
       --line: #e7e9e1;
       --green: #41664d;
       --green-dark: #294b37;
-      --lime: #d8ef88;
+      --lime: #e7eea9;
       --coral: #df7459;
+      --sun: #f5ce6b;
       --radius: 10px;
     }
 
@@ -68,11 +69,18 @@
     main { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
 
     .welcome {
-      padding: 54px 0 38px;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 28px;
+      position: relative;
+      min-height: 260px;
+      margin: 34px 0 28px;
+      padding: 34px 38px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr) auto;
+      align-items: center;
+      gap: 25px;
+      overflow: hidden;
+      border: 1px solid #e8e5d4;
+      border-radius: 14px;
+      background: #f0eddd;
     }
 
     .eyebrow {
@@ -96,7 +104,97 @@
 
     h1 em { color: var(--green); font-style: normal; }
 
-    .welcome-copy { max-width: 475px; margin-bottom: 0; color: var(--muted); font-size: 15px; }
+    .welcome-copy { max-width: 400px; margin-bottom: 0; color: #69756b; font-size: 14px; }
+
+    .welcome-art {
+      position: relative;
+      height: 184px;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #dce3c8;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #edf2d7 0%, #dce8c5 100%);
+    }
+
+    .art-sun {
+      position: absolute;
+      top: 18px;
+      right: 25px;
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      animation: sunshine 4s ease-in-out infinite;
+    }
+
+    .art-character {
+      position: absolute;
+      z-index: 2;
+      bottom: 26px;
+      left: 50%;
+      width: 98px;
+      height: 98px;
+      object-fit: contain;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 5px 2px #53624722);
+      animation: bob 3.5s ease-in-out infinite;
+    }
+
+    .art-plant {
+      position: absolute;
+      z-index: 2;
+      right: 21px;
+      bottom: 19px;
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      animation: bob 3.5s ease-in-out 500ms infinite;
+    }
+
+    .art-hill {
+      position: absolute;
+      right: -12%;
+      bottom: -48px;
+      left: -12%;
+      height: 94px;
+      border-radius: 50% 50% 0 0;
+      background: #c2d2a5;
+    }
+
+    .art-hill::after {
+      position: absolute;
+      top: 20px;
+      right: -10%;
+      left: 52%;
+      height: 80px;
+      border-radius: 50% 50% 0 0;
+      background: #b4c891;
+      content: "";
+    }
+
+    .art-caption {
+      position: absolute;
+      z-index: 3;
+      top: 14px;
+      left: 15px;
+      padding: 5px 8px;
+      border: 1px solid #d6dfc0;
+      border-radius: 5px;
+      background: #f8f8e9;
+      color: var(--green-dark);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    @keyframes bob {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -5px; }
+    }
+
+    @keyframes sunshine {
+      0%, 100% { rotate: -5deg; }
+      50% { rotate: 6deg; }
+    }
 
     .streak-pill {
       min-width: 170px;
@@ -308,30 +406,31 @@
 
     .note-surface {
       padding: 21px 22px 20px;
-      background: var(--green-dark);
-      border-color: var(--green-dark);
-      color: white;
+      background: #f5e4d9;
+      border-color: #ecdbcf;
+      color: var(--ink);
     }
 
-    .note-surface .eyebrow { margin-bottom: 12px; color: var(--lime); }
-    .note-surface blockquote { margin: 0; font-family: Manrope, sans-serif; font-size: 18px; font-weight: 500; line-height: 1.5; }
+    .note-surface .eyebrow { margin-bottom: 12px; color: #a9513c; }
+    .note-surface blockquote { min-height: 82px; margin: 0; font-family: Manrope, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.5; }
     .note-bottom { margin-top: 17px; display: flex; align-items: center; justify-content: space-between; }
-    .note-credit { color: #c5d2c4; font-size: 10px; }
+    .note-credit { color: #826f65; font-size: 10px; }
+    .quote-count { margin-left: auto; padding-right: 10px; color: #826f65; font-size: 10px; font-variant-numeric: tabular-nums; }
 
     .quote-button {
       width: 32px;
       height: 32px;
       display: grid;
       place-items: center;
-      border: 1px solid #647b69;
+      border: 1px solid #d8bfb1;
       border-radius: 50%;
-      background: transparent;
-      color: white;
+      background: #fbf3ed;
+      color: #754a3d;
       font-size: 16px;
       transition: background 150ms ease;
     }
 
-    .quote-button:hover { background: #42604a; }
+    .quote-button:hover { background: #f0d5c5; }
 
     .footer {
       padding: 18px 0 24px;
@@ -346,7 +445,9 @@
     @media (max-width: 720px) {
       .topbar { height: 66px; padding: 0 22px; }
       main { width: min(100% - 36px, 520px); }
-      .welcome { padding: 38px 0 25px; align-items: start; flex-direction: column; gap: 20px; }
+      .welcome { min-height: 0; margin: 22px 0; padding: 24px; grid-template-columns: 1fr; gap: 20px; }
+      .welcome-art { grid-column: 1 / -1; height: 170px; }
+      .streak-pill { grid-column: 1 / -1; justify-self: start; }
       h1 { font-size: clamp(34px, 9vw, 46px); }
       .streak-pill { min-width: 0; }
       .dashboard { grid-template-columns: 1fr; gap: 16px; padding-bottom: 35px; }
@@ -356,7 +457,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -368,10 +469,17 @@
 
   <main>
     <section class="welcome" aria-labelledby="welcome-title">
-      <div>
+      <div class="welcome-copy-block">
         <p class="eyebrow">A little progress, every day</p>
         <h1 id="welcome-title">Show up for <em>yourself.</em></h1>
         <p class="welcome-copy">You don't need a perfect day. Just keep a few small promises, and let them add up.</p>
+      </div>
+      <div class="welcome-art" role="img" aria-label="A cheerful cartoon person stretching in a sunny garden">
+        <span class="art-caption">GROW AT YOUR OWN PACE</span>
+        <img class="art-sun" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f31e.png" alt="" width="42" height="42">
+        <div class="art-hill"></div>
+        <img class="art-character" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9d8.png" alt="" width="98" height="98">
+        <img class="art-plant" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f331.png" alt="" width="56" height="56">
       </div>
       <div class="streak-pill" aria-label="Current streak">
         <span class="streak-icon" aria-hidden="true">✳</span>
@@ -419,6 +527,7 @@
           <blockquote id="quote">You don't have to see the whole staircase. Just take the first step.</blockquote>
           <div class="note-bottom">
             <span class="note-credit">A little reminder for today</span>
+            <span class="quote-count" id="quote-count" aria-live="polite">01 / 14</span>
             <button class="quote-button" id="quote-button" type="button" aria-label="Show another reminder" title="New reminder">↻</button>
           </div>
         </section>
@@ -441,7 +550,16 @@
       'Consistency is built in the ordinary moments.',
       'Keep one small promise to yourself today.',
       'Progress counts, even when it feels quiet.',
-      'A fresh start can be as small as your next choice.'
+      'A fresh start can be as small as your next choice.',
+      'You are allowed to grow at your own pace.',
+      'Tiny steps still move you forward.',
+      'Make today a little kinder to tomorrow-you.',
+      'Rest is part of the rhythm, not a reason to quit.',
+      'The person you are becoming is built by what you repeat.',
+      'You have made it through every hard day so far.',
+      'Start where you are. Use what you have. Do one thing.',
+      'There is no behind. There is only your next step.',
+      'Small is a lovely place to begin.'
     ];
     const weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const today = new Date();
@@ -603,6 +721,7 @@
     document.getElementById('quote-button').addEventListener('click', () => {
       reminderIndex = (reminderIndex + 1) % reminders.length;
       document.getElementById('quote').textContent = reminders[reminderIndex];
+      document.getElementById('quote-count').textContent = `${String(reminderIndex + 1).padStart(2, '0')} / ${String(reminders.length).padStart(2, '0')}`;
     });
 
     render();
