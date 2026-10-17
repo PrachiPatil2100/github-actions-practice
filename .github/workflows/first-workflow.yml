@@ -1,0 +1,21 @@
+
+name: My First CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Welcome
+        run: echo "My first GitHub Actions pipeline!"
+
+      - name: Check runner
+        run: uname -a
+
+      - name: Check working directory
+        run: pwd
