@@ -20,8 +20,11 @@ jobs:
           username: ${{ vars.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           script: |
-            git clone https://github.com/PrachiPatil2100/github-actions-practice.git
-            cd github-actions-practice
-            sudo su
-            rm -rf /var/www/html/*
-            cp index.html /var/www/html/
+            set -e
+            DEPLOY_DIR="$HOME/github-actions-practice"
+            if [ -d "$DEPLOY_DIR/.git" ]; then
+              git -C "$DEPLOY_DIR" pull --ff-only origin main
+            else
+              git clone --branch main https://github.com/PrachiPatil2100/github-actions-practice.git "$DEPLOY_DIR"
+            fi
+            sudo -n install -m 0644 "$DEPLOY_DIR/index.html" /var/www/html/index.html
