@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DISCIPLINE | Build Yourself</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101411;
+      color: #f5f3e9;
+      line-height: 1.6;
+    }
+
+    header, main, footer {
+      width: min(900px, 90%);
+      margin: auto;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid #343b34;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+
+    .hero { padding: 65px 0 35px; }
+
+    .tag {
+      color: #b9d99a;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 8vw, 76px);
+      line-height: 1.05;
+      margin: 18px 0;
+    }
+
+    h1 span { color: #b9d99a; }
+
+    .intro { color: #bdc4ba; max-width: 560px; }
+
+    .panel {
+      background: #1b221c;
+      border: 1px solid #343b34;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: #343b34;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+
+    #progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #b9d99a;
+      transition: width 0.2s;
+    }
+
+    .habit {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid #343b34;
+      cursor: pointer;
+    }
+
+    .habit:last-child { border-bottom: 0; }
+
+    input[type="checkbox"] {
+      accent-color: #b9d99a;
+      width: 18px;
+      height: 18px;
+    }
+
+    button {
+      background: #b9d99a;
+      color: #101411;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #quote { color: #b9d99a; font-size: 19px; }
+
+    footer {
+      border-top: 1px solid #343b34;
+      padding: 24px 0;
+      color: #9ba398;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>DISCIPLINE<span style="color:#b9d99a">.</span></header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">Small actions. Strong identity.</div>
+      <h1>Become who<br>you <span>promised.</span></h1>
+      <p class="intro">
+        Motivation comes and goes. Discipline is the decision to
+        keep showing up, especially when you don't feel like it.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Today's commitments</h2>
+      <p id="progress-text">0 of 4 habits completed</p>
+      <div class="progress-track">
+        <div id="progress-bar"></div>
+      </div>
+
+      <label class="habit">
+        <input type="checkbox">
+        <span>Wake up on time</span>
+      </label>
+      <label class="habit">
+        <input type="checkbox">
+        <span>Learn something for my career</span>
+      </label>
+      <label class="habit">
+        <input type="checkbox">
+        <span>Move my body for 30 minutes</span>
+      </label>
+      <label class="habit">
+        <input type="checkbox">
+        <span>Read and reflect for 10 minutes</span>
+      </label>
+
+      <p id="completion-message">Start with one small win.</p>
+      <button id="reset-button">Reset today's checklist</button>
+    </section>
+
+    <section class="panel">
+      <div class="tag">Remember this</div>
+      <p id="quote">You don't need to feel ready. You need to begin.</p>
+      <button id="quote-button">New reminder</button>
+    </section>
+  </main>
+
+  <footer>DISCIPLINE. &mdash; Build habits. Keep promises to yourself.</footer>
+
+  <script>
+    const checkboxes = document.querySelectorAll(
+      '.habit input[type="checkbox"]'
+    );
+    const progressText = document.getElementById('progress-text');
+    const progressBar = document.getElementById('progress-bar');
+    const message = document.getElementById('completion-message');
+
+    function updateProgress() {
+      const completed = [...checkboxes].filter(box => box.checked).length;
+      const total = checkboxes.length;
+
+      progressText.textContent = `${completed} of ${total} habits completed`;
+      progressBar.style.width = `${(completed / total) * 100}%`;
+
+      message.textContent = completed === total
+        ? 'Excellent! You kept every commitment today.'
+        : completed === 0
+          ? 'Start with one small win.'
+          : 'Keep going. Consistency beats perfection.';
+    }
+
+    checkboxes.forEach(box => {
+      box.addEventListener('change', updateProgress);
+    });
+
+    document.getElementById('reset-button').addEventListener('click', () => {
+      checkboxes.forEach(box => box.checked = false);
+      updateProgress();
+    });
+
+    const quotes = [
+      "You don't need to feel ready. You need to begin.",
+      "Consistency is more powerful than intensity.",
+      "Keep promises to yourself, especially the small ones.",
+      "Your habits shape the person you become."
+    ];
+
+    let quoteIndex = 0;
+
+    document.getElementById('quote-button').addEventListener('click', () => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById('quote').textContent = quotes[quoteIndex];
+    });
+  </script>
+</body>
+</html>
