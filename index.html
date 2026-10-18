@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f6f6f1">
+  <meta name="theme-color" content="#121a15">
   <title>Steady | Your daily practice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light;
-      --paper: #f7f6ef;
-      --white: #fff;
-      --ink: #1e3027;
-      --muted: #738077;
-      --line: #e7e9e1;
-      --green: #41664d;
-      --green-dark: #294b37;
+      color-scheme: dark;
+      --paper: #121a15;
+      --white: #1d2821;
+      --ink: #edf2e9;
+      --muted: #a0ada2;
+      --line: #35443a;
+      --green: #bad58a;
+      --green-dark: #86aa70;
       --lime: #e7eea9;
       --coral: #df7459;
       --sun: #f5ce6b;
@@ -29,7 +29,7 @@
 
     body {
       margin: 0;
-      background: var(--paper);
+      background: radial-gradient(ellipse at 50% -25%, #26382b 0, var(--paper) 68%);
       color: var(--ink);
       font-family: "DM Sans", sans-serif;
       line-height: 1.5;
@@ -80,7 +80,7 @@
       overflow: hidden;
       border: 1px solid #e8e5d4;
       border-radius: 14px;
-      background: #f0eddd;
+      background: linear-gradient(112deg, #202d24 0%, #202d24 53%, #29382a 100%);
     }
 
     .eyebrow {
@@ -104,7 +104,7 @@
 
     h1 em { color: var(--green); font-style: normal; }
 
-    .welcome-copy { max-width: 400px; margin-bottom: 0; color: #69756b; font-size: 14px; }
+    .welcome-copy { max-width: 400px; margin-bottom: 0; color: #b2beb1; font-size: 14px; }
 
     .welcome-art {
       position: relative;
@@ -171,16 +171,60 @@
       content: "";
     }
 
+    .buddy-message {
+      position: absolute;
+      z-index: 4;
+      right: 12px;
+      bottom: 112px;
+      max-width: 118px;
+      padding: 6px 9px;
+      border: 1px solid #455641;
+      border-radius: 9px 9px 2px 9px;
+      background: #26342a;
+      color: #e7efd9;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 3px 10px #52624712;
+    }
+
+    .buddy-button {
+      position: absolute;
+      z-index: 5;
+      right: 12px;
+      bottom: 11px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #455641;
+      border-radius: 50%;
+      background: #26342a;
+      color: #e7efd9;
+      font-size: 16px;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .buddy-button:hover { transform: rotate(35deg); background: #344735; }
+
+    .art-character.is-celebrating { animation: cheer 520ms ease-in-out 2; }
+
+    @keyframes cheer {
+      0%, 100% { transform: translateX(-50%) rotate(0); }
+      30% { transform: translateX(-50%) rotate(-12deg) translateY(-8px); }
+      70% { transform: translateX(-50%) rotate(12deg) translateY(-8px); }
+    }
+
     .art-caption {
       position: absolute;
       z-index: 3;
-      top: 14px;
+      bottom: 14px;
       left: 15px;
       padding: 5px 8px;
-      border: 1px solid #d6dfc0;
+      border: 1px solid #455641;
       border-radius: 5px;
-      background: #f8f8e9;
-      color: var(--green-dark);
+      background: #26342a;
+      color: #e7efd9;
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.8px;
@@ -202,7 +246,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: var(--white);
+      background: #1d2821;
       border: 1px solid var(--line);
       border-radius: var(--radius);
     }
@@ -213,7 +257,7 @@
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: #fff0e9;
+      background: #482e2a;
       color: var(--coral);
       font-size: 20px;
     }
@@ -250,8 +294,8 @@
     .count-chip {
       padding: 6px 10px;
       border-radius: 20px;
-      background: #f1f4ec;
-      color: var(--green-dark);
+      background: #29382d;
+      color: #d3e6b8;
       font-size: 11px;
       font-weight: 700;
       white-space: nowrap;
@@ -266,7 +310,7 @@
       margin-top: 8px;
       overflow: hidden;
       border-radius: 9px;
-      background: #edf0e9;
+      background: #303d33;
     }
 
     #progress-bar {
@@ -288,13 +332,53 @@
       border-top: 1px solid var(--line);
     }
 
+    .habit-icon {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #3d5141;
+      border-radius: 10px;
+      background: #26342a;
+      font-size: 20px;
+    }
+
+    .habit-detail { min-width: 0; flex: 1; }
+    .habit-name { display: block; font-size: 13px; font-weight: 600; }
+
+    .water-meter {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .glass-button {
+      width: 25px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid #4a5a4c;
+      border-radius: 5px;
+      background: #17211a;
+      color: #7f9180;
+      font-size: 16px;
+      line-height: 1;
+      transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+    }
+
+    .glass-button.is-filled { border-color: #83bcd0; background: #244957; color: #a9e4f5; }
+    .glass-button:hover { transform: translateY(-2px); }
+    .water-count { margin-left: 4px; color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+
     .habit-check {
       appearance: none;
       flex: 0 0 21px;
       width: 21px;
       height: 21px;
       margin: 0;
-      border: 1.5px solid #cbd2c8;
+      border: 1.5px solid #68766b;
       border-radius: 6px;
       background: var(--white);
       cursor: pointer;
@@ -306,7 +390,7 @@
     .habit-check:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #bad179; outline-offset: 3px; }
 
     .habit-name { flex: 1; font-size: 13px; font-weight: 500; }
-    .habit-row.is-done .habit-name { color: #929b92; text-decoration: line-through; }
+    .habit-row.is-done .habit-name { color: #a0ada2; text-decoration: line-through; }
 
     .remove-habit {
       width: 30px;
@@ -314,7 +398,7 @@
       border: 0;
       border-radius: 50%;
       background: transparent;
-      color: #929b92;
+      color: #a0ada2;
       font-size: 19px;
       line-height: 1;
       opacity: 0;
@@ -322,7 +406,7 @@
     }
 
     .habit-row:hover .remove-habit, .remove-habit:focus-visible { opacity: 1; }
-    .remove-habit:hover { background: #fff0e9; color: var(--coral); }
+    .remove-habit:hover { background: #482e2a; color: #f49a80; }
 
     .add-form {
       margin: 12px 25px 20px;
@@ -337,20 +421,20 @@
       padding: 0 12px;
       border: 1px solid var(--line);
       border-radius: 7px;
-      background: #fcfcfa;
+      background: #17211a;
       color: var(--ink);
       font-size: 12px;
     }
 
-    .add-form input::placeholder { color: #9aa39a; }
+    .add-form input::placeholder { color: #9da99e; }
 
     .add-button {
       width: 40px;
       height: 40px;
       border: 0;
       border-radius: 7px;
-      background: var(--green-dark);
-      color: var(--white);
+      background: #54764b;
+      color: #f4f7ef;
       font-size: 22px;
       line-height: 1;
       transition: background 150ms ease;
@@ -363,13 +447,18 @@
       margin: 0 25px 20px;
       padding: 11px 13px;
       border-radius: 7px;
-      background: #f1f5e6;
-      color: var(--green-dark);
+      background: #2c3a2c;
+      color: #d9e9be;
       font-size: 12px;
       font-weight: 600;
     }
 
-    .done-message.visible { display: block; }
+    .done-message.visible { display: block; animation: arrive 300ms ease-out; }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .side-stack { display: grid; gap: 20px; }
 
@@ -386,7 +475,7 @@
     }
 
     .week-day { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: end; gap: 8px; }
-    .day-track { width: min(24px, 100%); height: 82px; display: flex; align-items: end; overflow: hidden; border-radius: 5px; background: #f0f2ed; }
+    .day-track { width: min(24px, 100%); height: 82px; display: flex; align-items: end; overflow: hidden; border-radius: 5px; background: #303d33; }
     .day-fill { width: 100%; min-height: 0; border-radius: 5px; background: #9ab16d; transition: height 220ms ease; }
     .week-day.today .day-fill { background: var(--green-dark); }
     .day-label { color: var(--muted); font-size: 10px; }
@@ -406,31 +495,31 @@
 
     .note-surface {
       padding: 21px 22px 20px;
-      background: #f5e4d9;
-      border-color: #ecdbcf;
+      background: #352722;
+      border-color: #594035;
       color: var(--ink);
     }
 
-    .note-surface .eyebrow { margin-bottom: 12px; color: #a9513c; }
+    .note-surface .eyebrow { margin-bottom: 12px; color: #f09a7d; }
     .note-surface blockquote { min-height: 82px; margin: 0; font-family: Manrope, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.5; }
     .note-bottom { margin-top: 17px; display: flex; align-items: center; justify-content: space-between; }
-    .note-credit { color: #826f65; font-size: 10px; }
-    .quote-count { margin-left: auto; padding-right: 10px; color: #826f65; font-size: 10px; font-variant-numeric: tabular-nums; }
+    .note-credit { color: #c0a99c; font-size: 10px; }
+    .quote-count { margin-left: auto; padding-right: 10px; color: #c0a99c; font-size: 10px; font-variant-numeric: tabular-nums; }
 
     .quote-button {
       width: 32px;
       height: 32px;
       display: grid;
       place-items: center;
-      border: 1px solid #d8bfb1;
+      border: 1px solid #78594b;
       border-radius: 50%;
-      background: #fbf3ed;
-      color: #754a3d;
+      background: #443128;
+      color: #ffd1bb;
       font-size: 16px;
       transition: background 150ms ease;
     }
 
-    .quote-button:hover { background: #f0d5c5; }
+    .quote-button:hover { background: #594034; }
 
     .footer {
       padding: 18px 0 24px;
@@ -447,6 +536,7 @@
       main { width: min(100% - 36px, 520px); }
       .welcome { min-height: 0; margin: 22px 0; padding: 24px; grid-template-columns: 1fr; gap: 20px; }
       .welcome-art { grid-column: 1 / -1; height: 170px; }
+      .buddy-message { right: 14px; bottom: 108px; }
       .streak-pill { grid-column: 1 / -1; justify-self: start; }
       h1 { font-size: clamp(34px, 9vw, 46px); }
       .streak-pill { min-width: 0; }
@@ -471,15 +561,17 @@
     <section class="welcome" aria-labelledby="welcome-title">
       <div class="welcome-copy-block">
         <p class="eyebrow">A little progress, every day</p>
-        <h1 id="welcome-title">Welcome!<em>Pratiksha Patil.</em></h1>
+        <h1 id="welcome-title">Welcome!<br><em>Let's grow.</em></h1>
         <p class="welcome-copy">You don't need a perfect day. Just keep a few small promises, and let them add up.</p>
       </div>
-      <div class="welcome-art" role="img" aria-label="A cheerful cartoon person stretching in a sunny garden">
+      <div class="welcome-art">
         <span class="art-caption">GROW AT YOUR OWN PACE</span>
         <img class="art-sun" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f31e.png" alt="" width="42" height="42">
         <div class="art-hill"></div>
-        <img class="art-character" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9d8.png" alt="" width="98" height="98">
+        <img class="art-character" id="buddy-character" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9d8.png" alt="" width="98" height="98">
         <img class="art-plant" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f331.png" alt="" width="56" height="56">
+        <span class="buddy-message" id="buddy-message" aria-live="polite">Ready when you are!</span>
+        <button class="buddy-button" id="buddy-button" type="button" aria-label="Change cartoon buddy" title="Meet another buddy">↻</button>
       </div>
       <div class="streak-pill" aria-label="Current streak">
         <span class="streak-icon" aria-hidden="true">✳</span>
@@ -540,10 +632,18 @@
   <script>
     const storageKey = 'steady-habits-v1';
     const starterHabits = [
-      { id: 'water', name: 'Drink a glass of water first thing' },
-      { id: 'learn', name: 'Spend 20 minutes learning' },
-      { id: 'move', name: 'Move your body for 30 minutes' },
-      { id: 'read', name: 'Read a few pages before bed' }
+      { id: 'water', name: 'Water' },
+      { id: 'learn', name: 'Learn 20 min' },
+      { id: 'move', name: 'Move 30 min' },
+      { id: 'read', name: 'Read before bed' }
+    ];
+    const habitIcons = { water: '🥛', learn: '📚', move: '🏋️', read: '📖' };
+    const waterGoal = 8;
+    const buddies = [
+      { emoji: '1f9d8', name: 'yoga friend' },
+      { emoji: '1f415', name: 'puppy' },
+      { emoji: '1f430', name: 'bunny' },
+      { emoji: '1f989', name: 'owl' }
     ];
     const reminders = [
       'You don\'t have to see the whole staircase. Just take the first step.',
@@ -575,12 +675,12 @@
       try {
         const saved = JSON.parse(localStorage.getItem(storageKey));
         if (saved && Array.isArray(saved.habits) && saved.days && typeof saved.days === 'object') {
-          return saved;
+          return { ...saved, buddyIndex: Number.isInteger(saved.buddyIndex) ? ((saved.buddyIndex % buddies.length) + buddies.length) % buddies.length : 0 };
         }
       } catch (error) {
         console.warn('Saved habit data could not be loaded.', error);
       }
-      return { habits: starterHabits, days: {} };
+      return { habits: starterHabits, days: {}, buddyIndex: 0 };
     }
 
     let state = loadState();
@@ -597,7 +697,9 @@
 
     function completedCount(key) {
       const day = state.days[key] || {};
-      return state.habits.filter(habit => day[habit.id]).length;
+      return state.habits.filter(habit => habit.id === 'water'
+        ? day.water === true || Number(day.water) >= waterGoal
+        : Boolean(day[habit.id])).length;
     }
 
     function updateStreak() {
@@ -617,24 +719,72 @@
       list.replaceChildren();
 
       state.habits.forEach(habit => {
+        const isWater = habit.id === 'water';
+        const waterCount = todayProgress.water === true ? waterGoal : Math.max(0, Math.min(waterGoal, Number(todayProgress.water) || 0));
         const row = document.createElement('div');
-        row.className = `habit-row${todayProgress[habit.id] ? ' is-done' : ''}`;
+        const isDone = isWater ? waterCount >= waterGoal : Boolean(todayProgress[habit.id]);
+        row.className = `habit-row${isDone ? ' is-done' : ''}`;
 
-        const checkbox = document.createElement('input');
-        checkbox.className = 'habit-check';
-        checkbox.type = 'checkbox';
-        checkbox.checked = Boolean(todayProgress[habit.id]);
-        checkbox.setAttribute('aria-label', `Mark ${habit.name} complete`);
-        checkbox.addEventListener('change', () => {
-          state.days[todayKey] = state.days[todayKey] || {};
-          state.days[todayKey][habit.id] = checkbox.checked;
-          saveState();
-          render();
-        });
+        const icon = document.createElement('span');
+        icon.className = 'habit-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = habitIcons[habit.id] || '✨';
 
+        const detail = document.createElement('div');
+        detail.className = 'habit-detail';
         const name = document.createElement('span');
         name.className = 'habit-name';
+        const starterHabit = starterHabits.find(item => item.id === habit.id);
+        const previousName = {
+          water: 'Drink a glass of water first thing',
+          learn: 'Spend 20 minutes learning',
+          move: 'Move your body for 30 minutes',
+          read: 'Read a few pages before bed'
+        }[habit.id];
+        if (starterHabit && habit.name === previousName) habit.name = starterHabit.name;
         name.textContent = habit.name;
+        detail.append(name);
+
+        if (isWater) {
+          const meter = document.createElement('div');
+          meter.className = 'water-meter';
+          meter.setAttribute('role', 'group');
+          meter.setAttribute('aria-label', 'Water intake, up to 8 glasses');
+          for (let glass = 1; glass <= waterGoal; glass += 1) {
+            const button = document.createElement('button');
+            button.className = `glass-button${glass <= waterCount ? ' is-filled' : ''}`;
+            button.type = 'button';
+            button.textContent = '🥛';
+            button.setAttribute('aria-label', `Set water intake to ${glass} ${glass === 1 ? 'glass' : 'glasses'}`);
+            button.setAttribute('aria-pressed', String(glass <= waterCount));
+            button.title = `${glass} of ${waterGoal} glasses`;
+            button.addEventListener('click', () => {
+              state.days[todayKey] = state.days[todayKey] || {};
+              state.days[todayKey].water = glass === waterCount ? glass - 1 : glass;
+              saveState();
+              render();
+            });
+            meter.append(button);
+          }
+          const count = document.createElement('span');
+          count.className = 'water-count';
+          count.textContent = `${waterCount}/${waterGoal}`;
+          meter.append(count);
+          detail.append(meter);
+        } else {
+          const checkbox = document.createElement('input');
+          checkbox.className = 'habit-check';
+          checkbox.type = 'checkbox';
+          checkbox.checked = isDone;
+          checkbox.setAttribute('aria-label', `Mark ${habit.name} complete`);
+          checkbox.addEventListener('change', () => {
+            state.days[todayKey] = state.days[todayKey] || {};
+            state.days[todayKey][habit.id] = checkbox.checked;
+            saveState();
+            render();
+          });
+          row.append(icon, detail, checkbox);
+        }
 
         const remove = document.createElement('button');
         remove.className = 'remove-habit';
@@ -649,7 +799,8 @@
           render();
         });
 
-        row.append(checkbox, name, remove);
+        if (isWater) row.append(icon, detail);
+        row.append(remove);
         list.append(row);
       });
 
@@ -661,6 +812,28 @@
       document.getElementById('progress-bar').style.width = `${percentage}%`;
       document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', percentage);
       document.getElementById('done-message').classList.toggle('visible', total > 0 && completed === total);
+      renderBuddy(completed, total);
+    }
+
+    function renderBuddy(completed, total) {
+      const buddy = buddies[state.buddyIndex] || buddies[0];
+      const character = document.getElementById('buddy-character');
+      character.src = `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${buddy.emoji}.png`;
+      character.alt = `Cartoon ${buddy.name}`;
+      const message = total > 0 && completed === total
+        ? 'We did it!'
+        : completed > 0
+          ? 'Look at you go!'
+          : 'Ready when you are!';
+      document.getElementById('buddy-message').textContent = message;
+      document.getElementById('buddy-button').setAttribute('aria-label', `Change cartoon buddy. Current buddy: ${buddy.name}`);
+      if (total > 0 && completed === total) {
+        character.classList.remove('is-celebrating');
+        void character.offsetWidth;
+        character.classList.add('is-celebrating');
+      } else {
+        character.classList.remove('is-celebrating');
+      }
     }
 
     function renderWeek() {
@@ -722,6 +895,12 @@
       reminderIndex = (reminderIndex + 1) % reminders.length;
       document.getElementById('quote').textContent = reminders[reminderIndex];
       document.getElementById('quote-count').textContent = `${String(reminderIndex + 1).padStart(2, '0')} / ${String(reminders.length).padStart(2, '0')}`;
+    });
+
+    document.getElementById('buddy-button').addEventListener('click', () => {
+      state.buddyIndex = ((state.buddyIndex || 0) + 1) % buddies.length;
+      saveState();
+      render();
     });
 
     render();
