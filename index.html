@@ -70,17 +70,14 @@
 
     .welcome {
       position: relative;
-      min-height: 260px;
-      margin: 34px 0 28px;
-      padding: 34px 38px;
+      min-height: 370px;
+      margin: 22px 0 28px;
+      padding: 24px 0;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr) auto;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 1.05fr) auto;
       align-items: center;
-      gap: 25px;
-      overflow: hidden;
-      border: 1px solid #e8e5d4;
-      border-radius: 14px;
-      background: linear-gradient(112deg, #202d24 0%, #202d24 53%, #29382a 100%);
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
     }
 
     .eyebrow {
@@ -108,75 +105,20 @@
 
     .welcome-art {
       position: relative;
-      height: 184px;
+      height: 320px;
       min-width: 0;
       overflow: hidden;
-      border: 1px solid #dce3c8;
-      border-radius: 12px;
-      background: linear-gradient(145deg, #edf2d7 0%, #dce8c5 100%);
+      touch-action: pan-y;
     }
 
-    .art-sun {
-      position: absolute;
-      top: 18px;
-      right: 25px;
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      animation: sunshine 4s ease-in-out infinite;
-    }
-
-    .art-character {
-      position: absolute;
-      z-index: 2;
-      bottom: 26px;
-      left: 50%;
-      width: 98px;
-      height: 98px;
-      object-fit: contain;
-      transform: translateX(-50%);
-      filter: drop-shadow(0 5px 2px #53624722);
-      animation: bob 3.5s ease-in-out infinite;
-    }
-
-    .art-plant {
-      position: absolute;
-      z-index: 2;
-      right: 21px;
-      bottom: 19px;
-      width: 56px;
-      height: 56px;
-      object-fit: contain;
-      animation: bob 3.5s ease-in-out 500ms infinite;
-    }
-
-    .art-hill {
-      position: absolute;
-      right: -12%;
-      bottom: -48px;
-      left: -12%;
-      height: 94px;
-      border-radius: 50% 50% 0 0;
-      background: #c2d2a5;
-    }
-
-    .art-hill::after {
-      position: absolute;
-      top: 20px;
-      right: -10%;
-      left: 52%;
-      height: 80px;
-      border-radius: 50% 50% 0 0;
-      background: #b4c891;
-      content: "";
-    }
+    #buddy-scene { width: 100%; height: 100%; display: block; }
 
     .buddy-message {
       position: absolute;
       z-index: 4;
-      right: 12px;
-      bottom: 112px;
-      max-width: 118px;
+      top: 8px;
+      right: 8px;
+      max-width: 130px;
       padding: 6px 9px;
       border: 1px solid #455641;
       border-radius: 9px 9px 2px 9px;
@@ -191,8 +133,8 @@
     .buddy-button {
       position: absolute;
       z-index: 5;
-      right: 12px;
-      bottom: 11px;
+      right: 8px;
+      bottom: 8px;
       width: 32px;
       height: 32px;
       display: grid;
@@ -206,39 +148,6 @@
     }
 
     .buddy-button:hover { transform: rotate(35deg); background: #344735; }
-
-    .art-character.is-celebrating { animation: cheer 520ms ease-in-out 2; }
-
-    @keyframes cheer {
-      0%, 100% { transform: translateX(-50%) rotate(0); }
-      30% { transform: translateX(-50%) rotate(-12deg) translateY(-8px); }
-      70% { transform: translateX(-50%) rotate(12deg) translateY(-8px); }
-    }
-
-    .art-caption {
-      position: absolute;
-      z-index: 3;
-      bottom: 14px;
-      left: 15px;
-      padding: 5px 8px;
-      border: 1px solid #455641;
-      border-radius: 5px;
-      background: #26342a;
-      color: #e7efd9;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-    }
-
-    @keyframes bob {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -5px; }
-    }
-
-    @keyframes sunshine {
-      0%, 100% { rotate: -5deg; }
-      50% { rotate: 6deg; }
-    }
 
     .streak-pill {
       min-width: 170px;
@@ -534,9 +443,10 @@
     @media (max-width: 720px) {
       .topbar { height: 66px; padding: 0 22px; }
       main { width: min(100% - 36px, 520px); }
-      .welcome { min-height: 0; margin: 22px 0; padding: 24px; grid-template-columns: 1fr; gap: 20px; }
-      .welcome-art { grid-column: 1 / -1; height: 170px; }
-      .buddy-message { right: 14px; bottom: 108px; }
+      .welcome { min-height: 0; margin: 20px 0; padding: 16px 0 22px; grid-template-columns: 1fr auto; gap: 14px; }
+      .welcome-copy-block { grid-column: 1 / -1; }
+      .welcome-art { grid-column: 1 / -1; grid-row: 2; height: min(72vw, 300px); min-height: 240px; }
+      .streak-pill { grid-column: 1 / -1; grid-row: 3; }
       .streak-pill { grid-column: 1 / -1; justify-self: start; }
       h1 { font-size: clamp(34px, 9vw, 46px); }
       .streak-pill { min-width: 0; }
@@ -565,11 +475,7 @@
         <p class="welcome-copy">You don't need a perfect day. Just keep a few small promises, and let them add up.</p>
       </div>
       <div class="welcome-art">
-        <span class="art-caption">GROW AT YOUR OWN PACE</span>
-        <img class="art-sun" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f31e.png" alt="" width="42" height="42">
-        <div class="art-hill"></div>
-        <img class="art-character" id="buddy-character" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9d8.png" alt="" width="98" height="98">
-        <img class="art-plant" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f331.png" alt="" width="56" height="56">
+        <canvas id="buddy-scene" role="img" aria-label="A sunny 3D garden with your cartoon companion"></canvas>
         <span class="buddy-message" id="buddy-message" aria-live="polite">Ready when you are!</span>
         <button class="buddy-button" id="buddy-button" type="button" aria-label="Change cartoon buddy" title="Meet another buddy">↻</button>
       </div>
@@ -643,7 +549,10 @@
       { emoji: '1f9d8', name: 'yoga friend' },
       { emoji: '1f415', name: 'puppy' },
       { emoji: '1f430', name: 'bunny' },
-      { emoji: '1f989', name: 'owl' }
+      { emoji: '1f989', name: 'owl' },
+      { emoji: '1f9ed', name: 'toy-town explorer' },
+      { emoji: '1f9fde', name: 'sunny sea sponge' },
+      { emoji: '1f41f', name: 'reef puffer pal' }
     ];
     const reminders = [
       'You don\'t have to see the whole staircase. Just take the first step.',
@@ -663,6 +572,439 @@
     ];
     const weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const today = new Date();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let buddyScene;
+    let buddyCamera;
+    let buddyRenderer;
+    let buddyGroup;
+    let buddyIndex = -1;
+    let buddyRotation = 0;
+    let dragStartX = null;
+    const floatingObjects = [];
+    let buddy2DContext;
+    let buddyCanvasFrame;
+
+    function addSphere(parent, size, position, color, detail = 24) {
+      const mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(1, detail, Math.max(12, detail - 8)),
+        new THREE.MeshStandardMaterial({ color, roughness: 0.72 })
+      );
+      mesh.scale.set(size[0], size[1], size[2]);
+      mesh.position.set(position[0], position[1], position[2]);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      parent.add(mesh);
+      return mesh;
+    }
+
+    function addFlower(x, z, petalColor) {
+      const flower = new THREE.Group();
+      flower.position.set(x, 0, z);
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.05, 0.66, 8), new THREE.MeshStandardMaterial({ color: 0x4f8050, roughness: 0.85 }));
+      stem.position.y = 0.34;
+      flower.add(stem);
+      addSphere(flower, [0.22, 0.22, 0.18], [0, 0.72, 0], petalColor, 18);
+      addSphere(flower, [0.09, 0.09, 0.1], [0, 0.72, 0.16], 0xf3cf76, 16);
+      for (let leafSide of [-1, 1]) addSphere(flower, [0.18, 0.07, 0.09], [leafSide * 0.12, 0.34, 0], 0x79a56a, 16).rotation.z = leafSide * -0.45;
+      buddyScene.add(flower);
+    }
+
+    function buildBuddy(index) {
+      if (!buddyScene || !window.THREE) return;
+      if (buddyGroup) buddyScene.remove(buddyGroup);
+
+      const buddy = buddies[index] || buddies[0];
+      const headColors = [0xf0b08c, 0xe7c48d, 0xe8d1ad, 0xe6c36c, 0xf0b08c, 0x69b9b1];
+      const outfitColors = [0x79a875, 0xd28b68, 0x8cb8d0, 0x9279b3, 0xd77b60, 0x378f91];
+      const headColor = headColors[index] || headColors[0];
+      const outfitColor = outfitColors[index] || outfitColors[0];
+      buddyGroup = new THREE.Group();
+      buddyGroup.userData.celebrating = false;
+
+      const body = addSphere(buddyGroup, [0.43, 0.58, 0.34], [0, 1.06, 0], outfitColor);
+      body.rotation.z = -0.04;
+      const face = addSphere(buddyGroup, [0.43, 0.43, 0.4], [0, 1.83, 0.01], headColor);
+
+      const limbMaterial = new THREE.MeshStandardMaterial({ color: outfitColor, roughness: 0.68 });
+      const skinMaterial = new THREE.MeshStandardMaterial({ color: headColor, roughness: 0.7 });
+      for (const side of [-1, 1]) {
+        const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 0.62, 14), limbMaterial);
+        arm.position.set(side * 0.49, 1.13, 0.02);
+        arm.rotation.z = side * -0.72;
+        arm.castShadow = true;
+        buddyGroup.add(arm);
+        addSphere(buddyGroup, [0.12, 0.12, 0.12], [side * 0.7, 0.91, 0.03], headColor, 16);
+
+        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.48, 14), limbMaterial);
+        leg.position.set(side * 0.18, 0.48, 0.02);
+        leg.castShadow = true;
+        buddyGroup.add(leg);
+        addSphere(buddyGroup, [0.2, 0.1, 0.29], [side * 0.18, 0.21, 0.1], 0xf0d6b6, 16);
+      }
+
+      const eyeMaterial = new THREE.MeshStandardMaterial({ color: 0x26332d, roughness: 0.4 });
+      addSphere(buddyGroup, [0.045, 0.06, 0.035], [-0.14, 1.88, 0.38], 0x26332d, 12);
+      addSphere(buddyGroup, [0.045, 0.06, 0.035], [0.14, 1.88, 0.38], 0x26332d, 12);
+      addSphere(buddyGroup, [0.06, 0.045, 0.04], [0, 1.73, 0.4], index === 3 ? 0xe78357 : 0xb96c55, 12);
+
+      if (buddy.name === 'puppy') {
+        for (const side of [-1, 1]) addSphere(buddyGroup, [0.15, 0.25, 0.12], [side * 0.38, 1.88, 0], 0x98674f);
+      } else if (buddy.name === 'bunny') {
+        for (const side of [-1, 1]) {
+          const ear = addSphere(buddyGroup, [0.11, 0.36, 0.1], [side * 0.2, 2.36, -0.02], 0xe8d1ad);
+          ear.rotation.z = side * -0.16;
+          addSphere(buddyGroup, [0.045, 0.23, 0.025], [side * 0.2, 2.38, 0.07], 0xe9a6a0, 16);
+        }
+      } else if (buddy.name === 'owl') {
+        for (const side of [-1, 1]) {
+          const wing = addSphere(buddyGroup, [0.22, 0.38, 0.14], [side * 0.48, 1.14, 0], 0x80689d);
+          wing.rotation.z = side * 0.2;
+        }
+        const beak = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.2, 5), new THREE.MeshStandardMaterial({ color: 0xe78357, roughness: 0.7 }));
+        beak.position.set(0, 1.77, 0.42);
+        beak.rotation.x = Math.PI / 2;
+        buddyGroup.add(beak);
+      } else if (buddy.name === 'toy-town explorer') {
+        addSphere(buddyGroup, [0.23, 0.25, 0.2], [0, 1.12, -0.35], 0x4d8b83);
+        const cap = addSphere(buddyGroup, [0.32, 0.15, 0.3], [0, 2.2, 0], 0x33867f);
+        cap.rotation.z = -0.06;
+        addSphere(buddyGroup, [0.35, 0.055, 0.25], [0, 2.12, 0.13], 0x276d69);
+        addSphere(buddyGroup, [0.075, 0.075, 0.045], [0, 2.21, 0.28], 0xf1c86c, 16);
+        addSphere(buddyGroup, [0.12, 0.15, 0.08], [0.3, 1.2, 0.29], 0x33867f, 16).rotation.z = -0.5;
+      } else if (buddy.name === 'reef puffer pal') {
+        body.scale.set(0.57, 0.62, 0.46);
+        face.scale.set(0.47, 0.45, 0.43);
+        face.position.y = 1.84;
+        face.position.z = 0.04;
+        addSphere(buddyGroup, [0.3, 0.22, 0.12], [0, 2.25, -0.02], 0xe2a765, 18);
+        for (const side of [-1, 1]) {
+          const fin = addSphere(buddyGroup, [0.25, 0.14, 0.08], [side * 0.58, 1.16, 0], 0xf09478, 18);
+          fin.rotation.z = side * -0.45;
+          const tail = addSphere(buddyGroup, [0.24, 0.12, 0.08], [side * 0.48, 0.68, -0.03], 0xf09478, 18);
+          tail.rotation.z = side * 0.5;
+        }
+        for (const [x, y] of [[-0.38, 1.52], [-0.32, 2.08], [0.36, 1.55], [0.34, 2.08], [0, 1.44]]) {
+          const spine = new THREE.Mesh(new THREE.ConeGeometry(0.07, 0.18, 6), new THREE.MeshStandardMaterial({ color: 0xe8c879, roughness: 0.78 }));
+          spine.position.set(x, y, -0.12);
+          spine.castShadow = true;
+          buddyGroup.add(spine);
+        }
+        addSphere(buddyGroup, [0.07, 0.07, 0.07], [-0.78, 2.12, -0.08], 0x9bd9dd, 16);
+        addSphere(buddyGroup, [0.045, 0.045, 0.045], [-0.94, 2.38, -0.08], 0xbce9e7, 14);
+      } else {
+        addSphere(buddyGroup, [0.13, 0.18, 0.09], [0, 2.18, -0.02], 0x89b376, 18);
+      }
+
+      buddyGroup.position.set(0, 0.05, 0.15);
+      buddyScene.add(buddyGroup);
+      buddyIndex = index;
+      document.getElementById('buddy-scene').setAttribute('aria-label', `A sunny 3D garden with a cartoon ${buddy.name}`);
+    }
+
+    function initBuddyScene() {
+      if (!window.THREE) return;
+      const canvas = document.getElementById('buddy-scene');
+      const scene = new THREE.Scene();
+      buddyScene = scene;
+      buddyCamera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+      buddyCamera.position.set(0, 2.6, 5.5);
+      buddyCamera.lookAt(0, 1.25, 0);
+
+      try {
+        buddyRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, preserveDrawingBuffer: true });
+      } catch (error) {
+        console.warn('The 3D garden could not start.', error);
+        return;
+      }
+      buddyRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      buddyRenderer.shadowMap.enabled = true;
+      buddyRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      buddyRenderer.outputEncoding = THREE.sRGBEncoding;
+      buddyRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+      buddyRenderer.toneMappingExposure = 0.9;
+      buddyRenderer.setClearColor(0x000000, 0);
+
+      scene.add(new THREE.HemisphereLight(0xe4f4d8, 0x334536, 0.85));
+      const sunlight = new THREE.DirectionalLight(0xffe0a0, 1.2);
+      sunlight.position.set(-3, 7, 5);
+      sunlight.castShadow = true;
+      sunlight.shadow.mapSize.set(1024, 1024);
+      scene.add(sunlight);
+
+      const ground = addSphere(scene, [3.4, 0.33, 2.45], [0, -0.25, -0.12], 0x739c63, 40);
+      ground.receiveShadow = true;
+      addSphere(scene, [1.55, 0.46, 0.7], [-2.25, 0.12, -1.3], 0x41654d, 28);
+      addSphere(scene, [1.8, 0.54, 0.8], [2.3, 0.12, -1.25], 0x52774e, 28);
+
+      const sun = addSphere(scene, [0.43, 0.43, 0.43], [2.2, 2.72, -1.75], 0xf4c96d, 32);
+      const sunRing = new THREE.Mesh(new THREE.TorusGeometry(0.57, 0.025, 8, 48), new THREE.MeshBasicMaterial({ color: 0xf4c96d, transparent: true, opacity: 0.55 }));
+      sunRing.position.copy(sun.position);
+      scene.add(sunRing);
+      floatingObjects.push({ mesh: sun, baseY: sun.position.y, phase: 0, speed: 0.8 });
+
+      for (const cloudPosition of [[-2.05, 2.43, -1.6], [-1.65, 2.52, -1.65], [-1.27, 2.42, -1.6]]) {
+        addSphere(scene, [0.32, 0.18, 0.2], cloudPosition, 0xdbe5ce, 20);
+      }
+      addFlower(-2.15, 0.45, 0xe68876);
+      addFlower(2.1, 0.55, 0xeabf65);
+      buildBuddy(state.buddyIndex || 0);
+
+      const resize = () => {
+        const bounds = canvas.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+        buddyCamera.aspect = bounds.width / bounds.height;
+        buddyCamera.updateProjectionMatrix();
+        buddyRenderer.setSize(bounds.width, bounds.height, false);
+        buddyRenderer.render(scene, buddyCamera);
+      };
+      new ResizeObserver(resize).observe(canvas);
+      resize();
+
+      canvas.addEventListener('pointerdown', event => {
+        dragStartX = event.clientX;
+        canvas.setPointerCapture(event.pointerId);
+      });
+      canvas.addEventListener('pointermove', event => {
+        if (dragStartX === null || !buddyGroup) return;
+        buddyRotation += (event.clientX - dragStartX) * 0.012;
+        dragStartX = event.clientX;
+      });
+      canvas.addEventListener('pointerup', () => { dragStartX = null; });
+      canvas.addEventListener('pointercancel', () => { dragStartX = null; });
+
+      const clock = new THREE.Clock();
+      const animate = () => {
+        requestAnimationFrame(animate);
+        const elapsed = clock.getElapsedTime();
+        if (!reducedMotion) {
+          for (const item of floatingObjects) item.mesh.position.y = item.baseY + Math.sin(elapsed * item.speed + item.phase) * 0.07;
+          if (buddyGroup) {
+            buddyGroup.position.y = 0.05 + Math.sin(elapsed * 1.7) * 0.08;
+            buddyGroup.rotation.y = buddyRotation + Math.sin(elapsed * 0.5) * 0.12;
+            buddyGroup.rotation.z = buddyGroup.userData.celebrating ? Math.sin(elapsed * 8) * 0.12 : 0;
+          }
+        } else if (buddyGroup) {
+          buddyGroup.rotation.y = buddyRotation;
+        }
+        buddyRenderer.render(scene, buddyCamera);
+      };
+      animate();
+    }
+
+    function roundedPath(context, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      context.beginPath();
+      context.moveTo(x + r, y);
+      context.arcTo(x + width, y, x + width, y + height, r);
+      context.arcTo(x + width, y + height, x, y + height, r);
+      context.arcTo(x, y + height, x, y, r);
+      context.arcTo(x, y, x + width, y, r);
+      context.closePath();
+    }
+
+    function drawSeaSponge(context, time) {
+      const bob = reducedMotion ? 0 : Math.sin(time * 2) * 4;
+      const x = 188;
+      const y = 72 + bob;
+
+      context.save();
+      context.shadowColor = '#062d3c66';
+      context.shadowBlur = 16;
+      context.shadowOffsetY = 9;
+      const sponge = context.createLinearGradient(x, y, x + 110, y + 145);
+      sponge.addColorStop(0, '#ffe57a');
+      sponge.addColorStop(1, '#f2b943');
+      context.fillStyle = sponge;
+      context.beginPath();
+      context.moveTo(x + 13, y + 4);
+      context.bezierCurveTo(x + 27, y - 1, x + 37, y + 3, x + 49, y + 1);
+      context.bezierCurveTo(x + 67, y - 2, x + 78, y + 3, x + 96, y + 1);
+      context.quadraticCurveTo(x + 110, y + 5, x + 109, y + 20);
+      context.bezierCurveTo(x + 114, y + 43, x + 108, y + 57, x + 111, y + 75);
+      context.bezierCurveTo(x + 115, y + 99, x + 109, y + 117, x + 111, y + 132);
+      context.quadraticCurveTo(x + 108, y + 146, x + 94, y + 144);
+      context.bezierCurveTo(x + 71, y + 148, x + 53, y + 142, x + 36, y + 145);
+      context.bezierCurveTo(x + 17, y + 148, x + 4, y + 143, x + 3, y + 130);
+      context.bezierCurveTo(x, y + 109, x + 5, y + 90, x + 2, y + 72);
+      context.bezierCurveTo(x - 1, y + 51, x + 4, y + 34, x + 2, y + 18);
+      context.quadraticCurveTo(x + 1, y + 6, x + 13, y + 4);
+      context.closePath();
+      context.fill();
+      context.shadowColor = 'transparent';
+      context.lineWidth = 3;
+      context.strokeStyle = '#d99d3b';
+      context.stroke();
+      context.restore();
+
+      for (const [dotX, dotY, radius] of [[15, 28, 3], [91, 24, 4], [17, 96, 4], [97, 92, 3], [80, 132, 3], [33, 126, 2.5]]) {
+        context.fillStyle = '#dba73e';
+        context.beginPath();
+        context.ellipse(x + dotX, y + dotY, radius * 1.1, radius, 0, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = '#fffdf3';
+      context.strokeStyle = '#d89937';
+      context.lineWidth = 2;
+      for (const eyeX of [x + 36, x + 75]) {
+        context.beginPath();
+        context.ellipse(eyeX, y + 49, 15, 18, 0, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+        context.fillStyle = '#5a9caa';
+        context.beginPath();
+        context.arc(eyeX + 2, y + 51, 7, 0, Math.PI * 2);
+        context.fill();
+        context.fillStyle = '#213943';
+        context.beginPath();
+        context.arc(eyeX + 3, y + 52, 3.5, 0, Math.PI * 2);
+        context.fill();
+        context.fillStyle = '#fffdf3';
+        context.beginPath();
+        context.arc(eyeX + 1, y + 48, 2, 0, Math.PI * 2);
+        context.fill();
+        context.fillStyle = '#fffdf3';
+        context.strokeStyle = '#d89937';
+      }
+
+      context.fillStyle = '#e88d79';
+      for (const cheekX of [x + 18, x + 91]) {
+        context.beginPath();
+        context.ellipse(cheekX, y + 75, 9, 5, 0, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.strokeStyle = '#704b39';
+      context.lineWidth = 2.5;
+      context.beginPath();
+      context.moveTo(x + 37, y + 78);
+      context.quadraticCurveTo(x + 56, y + 96, x + 76, y + 78);
+      context.stroke();
+
+      context.fillStyle = '#e7f1e4';
+      context.beginPath();
+      context.moveTo(x + 49, y + 83);
+      context.lineTo(x + 64, y + 83);
+      context.lineTo(x + 61, y + 90);
+      context.lineTo(x + 52, y + 90);
+      context.closePath();
+      context.fill();
+
+      context.fillStyle = '#287f87';
+      roundedPath(context, x + 9, y + 102, 96, 30, 7);
+      context.fill();
+      context.fillStyle = '#f3cb70';
+      roundedPath(context, x + 48, y + 109, 18, 17, 4);
+      context.fill();
+      context.fillStyle = '#ea9479';
+      context.beginPath();
+      context.moveTo(x + 56, y + 103);
+      context.lineTo(x + 48, y + 110);
+      context.lineTo(x + 56, y + 115);
+      context.lineTo(x + 64, y + 110);
+      context.closePath();
+      context.fill();
+
+      context.strokeStyle = '#f3cb70';
+      context.lineWidth = 5;
+      context.lineCap = 'round';
+      context.beginPath();
+      context.moveTo(x + 9, y + 111);
+      context.lineTo(x - 3, y + 101);
+      context.moveTo(x + 105, y + 111);
+      context.lineTo(x + 117, y + 100);
+      context.stroke();
+      context.fillStyle = '#f2bd65';
+      context.beginPath();
+      context.ellipse(x + 35, y + 147, 18, 6, 0, 0, Math.PI * 2);
+      context.ellipse(x + 82, y + 147, 18, 6, 0, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    function draw2DScene(time = 0) {
+      if (!buddy2DContext) return;
+      const canvas = document.getElementById('buddy-scene');
+      const context = buddy2DContext;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      if (canvas.width !== Math.round(width * ratio) || canvas.height !== Math.round(height * ratio)) {
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+      }
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      const scale = Math.min(width / 480, height / 320);
+      context.clearRect(0, 0, width, height);
+      context.save();
+      context.translate((width - 480 * scale) / 2, (height - 320 * scale) / 2);
+      context.scale(scale, scale);
+
+      const sky = context.createLinearGradient(0, 0, 0, 320);
+      sky.addColorStop(0, '#2f8d9b');
+      sky.addColorStop(0.68, '#246b7c');
+      sky.addColorStop(1, '#d9b975');
+      context.fillStyle = sky;
+      context.fillRect(0, 0, 480, 320);
+
+      context.fillStyle = 'rgba(165, 225, 220, 0.16)';
+      context.beginPath();
+      context.ellipse(110, 105, 135, 88, -0.3, 0, Math.PI * 2);
+      context.fill();
+      context.fillStyle = '#d9b975';
+      context.beginPath();
+      context.moveTo(0, 286);
+      context.quadraticCurveTo(140, 262, 280, 286);
+      context.quadraticCurveTo(390, 306, 480, 279);
+      context.lineTo(480, 320);
+      context.lineTo(0, 320);
+      context.closePath();
+      context.fill();
+
+      for (let index = 0; index < 8; index += 1) {
+        const bubbleY = (index * 47 + 24 - (reducedMotion ? 0 : time * (10 + index % 3 * 4))) % 280;
+        const bubbleX = (index * 73 + 22) % 460 + 10;
+        context.strokeStyle = 'rgba(207, 247, 236, 0.5)';
+        context.lineWidth = 2;
+        context.beginPath();
+        context.arc(bubbleX, bubbleY, 5 + index % 3 * 2, 0, Math.PI * 2);
+        context.stroke();
+      }
+
+      context.lineWidth = 9;
+      context.lineCap = 'round';
+      for (const plantX of [38, 438]) {
+        context.strokeStyle = '#4c9879';
+        context.beginPath();
+        context.moveTo(plantX, 292);
+        context.quadraticCurveTo(plantX - 15, 245, plantX + 1, 210);
+        context.moveTo(plantX + 8, 292);
+        context.quadraticCurveTo(plantX + 31, 252, plantX + 18, 226);
+        context.stroke();
+      }
+
+      const buddy = buddies[state.buddyIndex] || buddies[0];
+      if (buddy.name === 'sunny sea sponge') {
+        drawSeaSponge(context, time);
+      } else {
+        context.font = '112px "Apple Color Emoji", "Segoe UI Emoji", sans-serif';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(buddy.emoji, 240, 190 + (reducedMotion ? 0 : Math.sin(time * 2) * 4));
+      }
+      context.restore();
+    }
+
+    function init2DScene() {
+      const canvas = document.getElementById('buddy-scene');
+      buddy2DContext = canvas.getContext('2d');
+      if (!buddy2DContext) return;
+      new ResizeObserver(() => draw2DScene()).observe(canvas);
+      const animate = time => {
+        draw2DScene(time / 1000);
+        if (!reducedMotion) buddyCanvasFrame = requestAnimationFrame(animate);
+      };
+      draw2DScene();
+      if (!reducedMotion) buddyCanvasFrame = requestAnimationFrame(animate);
+    }
 
     function dateKey(date) {
       const year = date.getFullYear();
@@ -817,9 +1159,7 @@
 
     function renderBuddy(completed, total) {
       const buddy = buddies[state.buddyIndex] || buddies[0];
-      const character = document.getElementById('buddy-character');
-      character.src = `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${buddy.emoji}.png`;
-      character.alt = `Cartoon ${buddy.name}`;
+      buddyIndex = state.buddyIndex;
       const message = total > 0 && completed === total
         ? 'We did it!'
         : completed > 0
@@ -827,13 +1167,8 @@
           : 'Ready when you are!';
       document.getElementById('buddy-message').textContent = message;
       document.getElementById('buddy-button').setAttribute('aria-label', `Change cartoon buddy. Current buddy: ${buddy.name}`);
-      if (total > 0 && completed === total) {
-        character.classList.remove('is-celebrating');
-        void character.offsetWidth;
-        character.classList.add('is-celebrating');
-      } else {
-        character.classList.remove('is-celebrating');
-      }
+      document.getElementById('buddy-scene').setAttribute('aria-label', `A 2D undersea scene with a cartoon ${buddy.name}`);
+      draw2DScene();
     }
 
     function renderWeek() {
@@ -903,6 +1238,7 @@
       render();
     });
 
+    init2DScene();
     render();
   </script>
 </body>
