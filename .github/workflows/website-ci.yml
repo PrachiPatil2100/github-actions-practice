@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::636710162452:role/Github_action_workflow
+          role-session-name: MySessionName
+
       - name: SSH into server and deploy
         uses: appleboy/ssh-action@v0.1.5
         with:
