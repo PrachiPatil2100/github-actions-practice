@@ -35,6 +35,16 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           script: |
             set -e
+            
+            if command -v apache2 >/dev/null 2>&1; then
+                echo "Apache is already installed."
+            else
+                echo "Apache is not installed. Installing Apache..."
+                sudo apt-get update
+                sudo apt-get install -y apache2
+            fi
+
+            
             DEPLOY_DIR="$HOME/github-actions-practice"
 
             if [ -d "$DEPLOY_DIR/.git" ]; then
